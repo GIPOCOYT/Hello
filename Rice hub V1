@@ -1,0 +1,92 @@
+--if you came to skid off this get a life smh fatherless bum.
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+    local Window = Rayfield:CreateWindow({
+        Name = "Rice Hub - Dragon Blox",
+        LoadingTitle = "Rice Hub V1",
+        LoadingSubtitle = "improved by Riotscripter",
+        ConfigurationSaving = {
+            Enabled = true,
+            FolderName = nil, -- Create a custom folder for your hub/game
+            FileName = "Riot Hub"
+        },
+            Discord = {
+                Enabled = false,
+                Invite = "https://discord.gg/9rMZvSPAQv", -- The Discord invite code, do not include discord.gg/
+                RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+            },
+        KeySystem = false, 
+        KeySettings = {
+            Title = "Rice Key System",
+            Subtitle = "Key System",
+            Note = "Join the discord (https://discord.gg/9rMZvSPAQv)",
+            FileName = "Rice Key",
+            SaveKey = true,
+            GrabKeyFromSite = false, 
+            Key = "Hello"
+        }
+    })
+
+    local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+
+    local Toggle = Tab:CreateToggle({
+        Name = "Autoclick (Made By Riotscripter)",
+        CurrentValue = false,
+        Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            getgenv().Autotap = Value
+
+if Value then
+    doTap()
+end
+        end,
+    })
+
+    local Toggle = Tab:CreateToggle({
+        Name = "Auto Rebirth",
+        CurrentValue = false,
+        Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            getgenv().Autotap = Value
+
+            if Value then
+                dorebirth()
+            end
+        end,
+    })
+
+    function doTap()
+        spawn(function()
+            while getgenv().Autotap == true do
+                local args = {
+    [1] = {
+        ["Camera"] = CFrame.new(7127.94629, 767.564453, -10080.8477, 0.694443047, -0.578470528, 0.427926153, -1.49011612e-08, 0.594715476, 0.803936243, -0.719547749, -0.558287919, 0.412995994),
+        ["SkillId"] = "1",
+        ["Began"] = true,
+        ["CFrame"] = CFrame.new(7110.30518, 731.7995, -10097.873, 0.694442809, -0.578470588, 0.427926362, -1.5264499e-08, 0.594715595, 0.803936183, -0.719547927, -0.55828768, 0.412995934),
+        ["Typ\208\181"] = 1,
+        ["Aim"] = Vector3.new(7087.04296875, 570.9751586914062, -10246.6572265625)
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("SkillRemote"):FireServer(unpack(args))
+        wait(0.5)
+            end
+        end)
+    end
+    
+    function dorebirth()
+        spawn(function()
+            while getgenv().Rebirth == true do
+                game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.StatsService.RebirthUp:FireServer()
+                wait(0.5)
+            end
+        end)
+    end
